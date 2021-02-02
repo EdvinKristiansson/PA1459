@@ -1,0 +1,9 @@
+@startuml
+
+participant ":Game" as gm
+participant "currentlyActive:Scene" as sc
+participant "theGameObjectName:GameObject" as go
+
+
+
+@enduml
