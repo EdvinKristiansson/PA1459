@@ -1,0 +1,17 @@
+@startuml
+
+participant ":Game" as gm
+participant "currentlyActive:Scene" as sc
+participant ":Inventory" as in
+participant "theGameObjectName:GameObject" as go
+
+-> gm : initiateSelect(theGameObjectName)
+activate gm
+gm -> sc :selectGameObject(theGameObjectName)
+activate sc
+sc -> in :checkAvailability(theGameObjectName)
+activate in
+in -> in
+in --> sc :return
+
+@enduml
