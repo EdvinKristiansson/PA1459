@@ -4,13 +4,16 @@ participant ":Game" as gm
 participant "currentlyActive:Scene" as sc
 participant "theGameObjectName:GameObject" as go
 
--> gm : initiateSelect(theGameObjectName)
+-> gm : selectObject(theGameObjectName)
 activate gm
-gm -> sc :selectGameObject(theGameObjectName)
+gm -> sc :getObjectOptions(theGameObjectName)
 activate sc
-sc -> go :getObject(theGameObjectName)
+sc -> go :getObjectOptions(theGameObjectName)
 activate go
-go --> sc :return:GameObject(theGameObjectName)
+go --> sc :return:ObjectOptions(list:Interactions)
 deactivate go
+sc --> gm :return:ObjectOptions(list:Interactions)
+deactivate sc
+<-- gm :return:ObjectOptions(list:Interactions)
 
 @enduml
