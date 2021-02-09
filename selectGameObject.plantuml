@@ -2,15 +2,22 @@
 
 participant ":Game" as gm
 participant "currentlyActive:Scene" as sc
+participant ":GameObjectRepository" as ga
 participant "theGameObjectName:GameObject" as go
+
 
 -> gm : initiateSelect(theGameObjectName)
 activate gm
-gm -> sc :selectGameObject(theGameObjectName)
+gm -> sc :isAvailable(String gameElementName)
 activate sc
-sc -> go :getObject(theGameObjectName)
+sc -> gm : return: boolean
+deactivate sc
+gm -> ga : GameObject getGameObject(String gameElementName)
+deactivate gm
+activate ga
+ga -> go : listInteractionTypes()
+deactivate ga
 activate go
-go --> sc :return:GameObject(theGameObjectName)
-deactivate go
+go -> : return: list: String theInteraction
 
 @enduml

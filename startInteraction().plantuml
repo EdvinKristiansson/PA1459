@@ -1,0 +1,14 @@
+participant ":Game" as gm
+participant ":Memo" as me
+participant "theGameObjectName:GameObject" as go
+participant "Interactiontype:" as in
+
+
+
+-> gm : startInteraction()
+gm -> me : startInteraction()
+me -> go : startInteraction(AktivObject,aktivInteaction,aktivOption)
+go -> in : startInteraction(aktivInteraction,aktivOption)
+in -> : startInteraction()
+in -> me : delInfo()
+@enduml

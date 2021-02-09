@@ -1,0 +1,31 @@
+Game : +selectGameObject(String name)
+
+Game : -AktivtMinne
+Game : -Scene currentScene
+' Game : -Scene playerInventory
+
+Game -- Scene
+Scene : +getGameObject(String name)
+' Scene : +listAvailableElements()
+' Scene : +boolean isAvailable(String gameElementName)
+' Scene : +boolean isGameObject(String gameElementName)
+
+
+
+class AktivtMinne
+Game -- AktivtMinne
+AktivtMinne : +GameObject getGameObject(String gameElementName)
+AktivtMinne o-- "*" GameObject
+
+Scene - "*" GameObject
+
+
+
+GameObject : +startInteraction(String theInteractionType)
+GameObject : +listCurrentInterationOptions()
+' Game : +setInteractionOptions(String theOptions)
+' GameObject : +setCurrentInteractionOptions(String theOptions)
+' Game : +startInteraction()
+' Game : +abortInteraction()
+' GameObject : +startCurrentInteraction()
+' GameObject : +abortCurrentInteraction()

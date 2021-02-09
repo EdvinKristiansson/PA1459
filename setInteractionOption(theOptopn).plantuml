@@ -1,0 +1,15 @@
+@startuml
+
+participant ":Game" as gm
+participant ":Memo" as me
+participant "theGameObjectName:GameObject" as go
+participant "Interactiontype:" as in
+
+
+
+-> gm : setInteractionOptions(theOptions)
+gm -> me : setInteractionOptions(theOptions)
+me -> go : selectInteractionOption(AktivObject,aktivInteaction,theOption)
+go -> in : setInteractionOptions(theOption)
+in -> me : return(theOption)
+@enduml
