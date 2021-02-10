@@ -1,4 +1,3 @@
-  
 @startuml selectObject(theGameObjectName)
 
 participant ":Game" as gm
@@ -10,7 +9,9 @@ activate gm
 activate sc
 gm -> sc: is_available(theGameObjectName) 
 sc --> gm: return bool
+deactivate sc
 gm -> sc :getObject(theGameObjectName)
+activate sc
 sc -> go :getObjectinteractions(theGameObjectName)
 activate go
 go --> sc :return: list[Interactions]
