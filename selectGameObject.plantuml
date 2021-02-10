@@ -8,16 +8,19 @@ participant "theGameObjectName:GameObject" as go
 
 -> gm : initiateSelect(theGameObjectName)
 activate gm
-gm -> sc :isAvailable(String gameElementName)
+gm -> sc :isAvailable(gameElementName)
 activate sc
-sc -> gm : return: boolean
+sc -> gm : return: Bool
 deactivate sc
-gm -> ga : GameObject getGameObject(String gameElementName)
-deactivate gm
+gm -> ga :getGameObject(gameElementName)
 activate ga
-ga -> go : listInteractionTypes()
+ga --> gm : return:gameObject
 deactivate ga
+gm -> go : listInteractionTypes()
 activate go
-go -> : return: list: String theInteraction
+go --> gm : return: list:theInteraction
+deactivate go
+<-- gm : return: list:theInteraction
+deactivate gm
 
 @enduml

@@ -1,16 +1,28 @@
 @startuml
 
 participant ":Game" as gm
-participant ":Memo" as me
 participant "theGameObjectName:GameObject" as go
 participant "Interactiontype:" as in
 
 
 -> gm : selectInteraction(theInteractiontype)
-gm -> me : selectInteraction(theInteractiontype)
-me -> go : selectGameObject(AktivObject,InteactionType)
-go -> in : getInteractionOption(InteractionType)
-in -> me : return(interactioption)
-in ->  : return(interactioption)
+activate gm
+gm -> go : getInteration(TheInteractionType)
+activate go
+go --> gm : return TheInteractionType
+deactivate go
+gm -> in : isInteactionOptionAvailable()
+activate in
+in --> gm : Bool
+deactivate in
+<-- gm: if False return
+gm -> in : getInteactionOption()
+activate in
+in --> gm : return List[interactionSpecificOptions]
+deactivate in
+<-- gm : if True returnList[interactionSpecificOptions]
+deactivate gm
+
+
 
 @enduml

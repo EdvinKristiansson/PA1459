@@ -1,15 +1,16 @@
 @startuml
 
 participant ":Game" as gm
-participant ":Memo" as me
-participant "theGameObjectName:GameObject" as go
-participant "Interactiontype:" as in
+participant "interactionType:Option" as op
 
 
 
 -> gm : setInteractionOptions(theOptions)
-gm -> me : setInteractionOptions(theOptions)
-me -> go : selectInteractionOption(AktivObject,aktivInteaction,theOption)
-go -> in : setInteractionOptions(theOption)
-in -> me : return(theOption)
+activate gm
+gm -> op : setOptions(theOptions)
+activate op
+op --> gm : return comfirm option
+deactivate op
+<-- gm : return comfirm option
+deactivate gm
 @enduml
